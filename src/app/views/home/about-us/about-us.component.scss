@@ -1,0 +1,67 @@
+.background-card-color{
+    width: 100%; 
+    height: 50%; 
+    background: rgba(78, 125, 176, 0.55); 
+
+    img{
+        width: 31vw;
+        height: 60vh;
+        margin-top: -10vh;
+    }
+}
+
+.align-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.align-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5vw;
+}
+
+.align-column-about-us{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 48vw;
+    margin-left: 10vw;
+    margin-top: 12vh;
+}
+
+.text-logo{
+    color: white;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    line-height: 28.80px;
+    word-wrap: break-word;
+
+    margin-top: -17vh;
+    margin-left: 4vw;
+}
+
+.text-about-us{
+    color: white;
+    font-size: 26px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    letter-spacing: 8.82px;
+    word-wrap: break-word
+}
+
+.text-resume-about-us{
+    color: white;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    letter-spacing: 2.20px;
+    word-wrap: break-word;
+    text-align: center;
+    line-height: 3vh;
+    margin-top: 3vh;
+}
