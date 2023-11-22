@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 import { initializeApp } from 'firebase/app';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { environment } from 'src/environments/environment';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 const firebaseApp = initializeApp(environment.firebaseConfig);
 const db = getFirestore(firebaseApp);
@@ -13,8 +14,13 @@ const db = getFirestore(firebaseApp);
 })
 export class AuthService {
   private loggedInStatus = new BehaviorSubject<boolean>(false);
+  formGroup: FormGroup;
 
-  constructor(private afAuth: AngularFireAuth){
+  constructor(private afAuth: AngularFireAuth, private fb: FormBuilder){
+    this.formGroup = this.fb.group({
+      isLoggedIn: [false],
+    })
+
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.loggedInStatus.next(true);

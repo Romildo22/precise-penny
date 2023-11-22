@@ -1,4 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
+html, body { 
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// Definindo cores do projeto
+$primary-color: #37447E;
+$secondary-color: #E7ECFF;
+$background-color-header: rgba(225.41, 231.48, 249.69, 0.82);
+$background-color: #ffffff;
+$blue-color-300: #929ECC; 
+$blue-color-400: #6F7CB2; 
+$blue-color-500: #505F98; 
+$blue-color-800: #111B47;
+
+$title-text: #091133;
+$text-color: #505F98; 
+
+$button-primary-bg: #111B47;
+$button-secondary-bg: #091133;
+$sidenavbar-size: 20%;

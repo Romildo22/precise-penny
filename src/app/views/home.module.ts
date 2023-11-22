@@ -1,3 +1,5 @@
+import { PlansComponent } from './home/plans/plans.component';
+import { HoldersComponent } from './home/holders/holders.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
@@ -13,21 +15,33 @@ import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './home/register/register.component';
 import { FinancialAnalysisComponent } from './home/financial-analysis/financial-analysis.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { CardComponent, NgxChartsModule } from '@swimlane/ngx-charts';
+import { StartComponent } from './home/start/start.component';
+import { FooterComponent } from '../shared/footer/footer.component';
+import { SidebarComponent } from '../shared/sidebar/sidebar.component';
+import { MatSelectModule } from '@angular/material/select';
+import { PhoneMaskDirective } from '../shared/phone-mask-directive/phone-mask-directive.component';
+import { DashboardComponent } from './home/dashboard/dashboard.component';
+import { CardsComponent } from './home/cards/cards.component';
+import { CategoriesComponent } from './home/categories/categories.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent,
     children: [
-      { path: '', component: AboutUsComponent },
+      { path: '', component: StartComponent },
+      { path: 'about-us', component: AboutUsComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'financial-analysis', component: FinancialAnalysisComponent },
       { path: 'account', component: AccountComponent },
-      // { path: 'meus-produtos', component: MeusProdutosComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'plans', component: PlansComponent },
+      { path: 'categories', component: CategoriesComponent },
+      { path: 'cards', component: CardComponent },
+      { path: 'holders', component: HoldersComponent },
     ] 
   },
-  // { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
@@ -40,16 +54,29 @@ export const routes: Routes = [
     MatIconModule,
     ReactiveFormsModule,
     NgxChartsModule,
-    RouterModule.forChild(routes)
+    MatSelectModule,
+    FlexLayoutModule,
+    RouterModule.forChild(routes),
   ],
   declarations: [
     HomeComponent,
     AccountComponent,
     HeaderComponent,
+    FooterComponent,
     LoginComponent,
     RegisterComponent,
     FinancialAnalysisComponent,
     AboutUsComponent,
+    StartComponent,
+    SidebarComponent,
+    DashboardComponent,
+    CardsComponent,
+    CategoriesComponent,
+    DashboardComponent,
+    HoldersComponent,
+    PlansComponent,
+    StartComponent,
+    PhoneMaskDirective,
   ],
 })
 export class HomeModule { }

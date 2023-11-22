@@ -1,0 +1,94 @@
+<div class="align-dashboard">
+  <div class="adjusts-filters">
+    <mat-card>
+      <mat-card-content fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap="2vh" [formGroup]="formGroup">
+
+        <mat-form-field fxFlex="13%" appearance="outline" class="input-field">
+          <mat-label>Data:</mat-label>
+          <mat-select formControlName="date">
+            <mat-option *ngIf="listCategory.length > 0" [value]="null" >Todos</mat-option>
+            <mat-option *ngIf="listCategory.length == 0" [value]="null" (click)="redirectToCategoryPage()" >Cadastrar uma categoria <mat-icon>add</mat-icon> </mat-option>
+            <mat-option *ngFor="let item of listCategory" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="13%" appearance="outline" class="input-field">
+          <mat-label>Atribuição:</mat-label>
+          <mat-select formControlName="assignment">
+            <mat-option *ngIf="listAssignment.length > 0" [value]="null" >Todos</mat-option>
+            <mat-option *ngIf="listAssignment.length == 0" [value]="null" >Cadastrar uma atribuição</mat-option>
+            <mat-option *ngFor="let item of listAssignment" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="13%" appearance="outline" class="input-field">
+          <mat-label>Valor:</mat-label>
+          <mat-select formControlName="value">
+            <mat-option *ngIf="listCard.length > 0" [value]="null" >Todos</mat-option>
+            <mat-option *ngIf="listCard.length == 0" [value]="null" >Cadastrar um cartão</mat-option>
+            <mat-option *ngFor="let item of listCard" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="13%" appearance="outline" class="input-field">
+          <mat-label>Parcela:</mat-label>
+          <mat-select formControlName="card">
+            <mat-option *ngIf="listCard.length > 0" [value]="null" >Todos</mat-option>
+            <mat-option *ngIf="listCard.length == 0" [value]="null" >Cadastrar um cartão</mat-option>
+            <mat-option *ngFor="let item of listCard" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="13%" appearance="outline" class="input-field">
+          <mat-label>Cartão:</mat-label>
+          <mat-select formControlName="card">
+            <mat-option *ngIf="listCard.length > 0" [value]="null" >Todos</mat-option>
+            <mat-option *ngIf="listCard.length == 0" [value]="null" >Cadastrar um cartão</mat-option>
+            <mat-option *ngFor="let item of listCard" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="13%" appearance="outline" class="input-field">
+          <mat-label>Descrição:</mat-label>
+          <mat-select formControlName="card">
+            <mat-option *ngIf="listCard.length > 0" [value]="null" >Todos</mat-option>
+            <mat-option *ngIf="listCard.length == 0" [value]="null" >Cadastrar um cartão</mat-option>
+            <mat-option *ngFor="let item of listCard" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="13%" appearance="outline" class="input-field">
+          <mat-label>Categoria:</mat-label>
+          <mat-select formControlName="category">
+            <mat-option *ngIf="listCategory.length > 0" [value]="null" >Todos</mat-option>
+            <mat-option *ngIf="listCategory.length == 0" [value]="null" (click)="redirectToCategoryPage()" >Cadastrar uma categoria <mat-icon>add</mat-icon> </mat-option>
+            <mat-option *ngFor="let item of listCategory" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div>
+
+  </div>
+
+  <div>
+    
+  </div>
+</div>

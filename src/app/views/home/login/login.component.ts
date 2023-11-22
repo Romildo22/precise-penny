@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       .then(res => {
         console.log('Login bem-sucedido!', res.user?.email);
         alert('Login bem-sucedido!',);
-        this.router.navigate(['/']);
+        this.router.navigate(['/dashboard']);
       })
       .catch(error => {
         console.error('Erro ao fazer login:', error);

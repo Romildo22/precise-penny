@@ -1,0 +1,37 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened="true" class="sidenav">
+    <img src="/assets/logo.svg" alt="Logo" class="logo">
+    <mat-nav-list>
+      <a mat-list-item routerLink="dashboard" routerLinkActive="selected" routerLinkActive="selected">
+        <img src="/assets/icon-dashboard.svg" alt="Dashboard" class="icons">
+        Dashboard
+      </a>
+      <a mat-list-item routerLink="account" routerLinkActive="selected" routerLinkActive="selected">
+        <img src="/assets/icon-plans.svg" alt="Dashboard" class="icons">
+        Planos
+      </a>
+      <a mat-list-item routerLink="categories" routerLinkActive="selected" routerLinkActive="selected">
+        <img src="/assets/icon-category.svg" alt="Dashboard" class="icons">
+        Cadastro de Categorias
+      </a>
+      <a mat-list-item href="#">
+        <img src="/assets/icon-card.svg" alt="Dashboard" class="icons">
+        Cadastro de Cartões
+      </a>
+      <a mat-list-item href="#">
+        <img src="/assets/icon-holders.svg" alt="Dashboard" class="icons">
+        Cadastro de Titulares
+      </a>
+    </mat-nav-list>
+    <div class="sidenavbar-config">
+      <img src="/assets/icon-profile.svg" alt="Perfil" class="profile">
+      
+      <div class="toolbar-user-info">
+        <span class="user-name">{{userName}}</span>
+        <span class="user-plan">{{userPlan}}</span>
+      </div>
+
+      <img src="/assets/icon-sing-out.svg" alt="Sair" class="sign-out" (click)="onLogout()">
+    </div>
+  </mat-sidenav>
+</mat-sidenav-container>

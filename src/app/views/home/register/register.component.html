@@ -17,8 +17,17 @@
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="input-field">
+                <mat-label>Selecione um plano:</mat-label>
+                <mat-select formControlName="plan">
+                  <mat-option value="Plano Básico">Plano Básico</mat-option>
+                  <mat-option value="Plano Premium">Plano Premium</mat-option>
+                  <mat-option value="Plano Elite">Plano Elite</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="input-field">
                   <mat-label>Telefone</mat-label>
-                  <input matInput type="tel" formControlName="phone" placeholder="Telefone" class="border">
+                  <input matInput type="tel" formControlName="phone" placeholder="Telefone" class="border" [appPhoneMask]="'11'">
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="input-field">

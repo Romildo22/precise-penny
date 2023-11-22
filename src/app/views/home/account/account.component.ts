@@ -19,7 +19,9 @@ export class AccountComponent implements OnInit {
   constructor(private loginService: LoginService, private authService: AuthService, private router: Router,) { }
 
   ngOnInit() {
-    this.fetchUserLoggedIn()
+    setTimeout(() => {
+      this.fetchUserLoggedIn()
+    }, 600);
   }
 
   async fetchUserLoggedIn(){
@@ -29,7 +31,7 @@ export class AccountComponent implements OnInit {
       this.userEmail = this.userData?.email;
       this.userName = this.userData?.name;
       this.userPhone = this.userData?.phone;
-      this.userPlan = "Novo Plano"
+      this.userPlan = this.userData?.plan;
     }
   }
 

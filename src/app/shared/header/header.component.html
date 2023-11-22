@@ -1,12 +1,14 @@
-<mat-toolbar class="mat-elevation-z4">
+<mat-toolbar *ngIf="!isLoggedIn" class="logged-out">
+  <div class="toolbar-content">
+    
+    <div class="nav-links">
+      <span routerLink="/" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">Início</span>
+      <span routerLink="about-us" routerLinkActive="selected" routerLinkActive="selected">Sobre</span>
+      <span routerLinkActive="selected">Planos</span>
+    </div>
 
-  <span routerLink="/" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">Início</span>
-  <span routerLinkActive="selected" *ngIf="!isLoggedIn">Planos</span>
-  <span routerLink="login" routerLinkActive="selected" *ngIf="!isLoggedIn">Login</span>
-  <!-- mostrar apenas com usuario logado -->
-  <span routerLink="financial-analysis" routerLinkActive="selected" *ngIf="isLoggedIn">Análise Financeira</span>
-  <span routerLink="account" routerLinkActive="selected" *ngIf="isLoggedIn">Conta</span>
-  <!-- mostrar apenas com usuario logado -->
-  <span routerLinkActive="selected">Redes Sociais</span>
+    <img src="/assets/logo.svg" alt="Logo" class="logo">
 
+    <span routerLink="login" routerLinkActive="selected" class="btn-access">Acessar Conta</span>
+  </div>
 </mat-toolbar>

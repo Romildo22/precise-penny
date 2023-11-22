@@ -19,8 +19,9 @@ export class RegisterService {
     this.formGroup = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
-      phone: ['', Validators.required, Validators.maxLength(11)],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      phone: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      plan: ['', Validators.required]
     })
   }
 

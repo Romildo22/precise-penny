@@ -21,7 +21,8 @@ export class RegisterComponent implements OnInit {
       const userData = {
         name: formValue.name,
         email: formValue.email,
-        phone: formValue.phone
+        phone: formValue.phone,
+        plan: formValue.plan 
       };
 
       await this.service.registerUser(formValue.email, formValue.password, userData);
