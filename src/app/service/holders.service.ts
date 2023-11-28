@@ -10,50 +10,42 @@ const db = getFirestore(firebaseApp);
 @Injectable({
   providedIn: 'root'
 })
-
-export class CategoriesService {
+export class HoldersService {
 
   formGroup: FormGroup;
 
   constructor(private fb: FormBuilder) {
       this.formGroup = this.fb.group({
-          category: [],
+        fullName: [''],
+        relation: [''],
       })
   }
 
-  async addCategory(categoryName: string, userId: string): Promise<void> {
+  async addValuesHolder(fullName: String, relation: String, userId: string): Promise<void> {
     try {
-      const categoriesCollection = collection(db, 'users', userId, 'categories');
+      const categoriesCollection = collection(db, 'users', userId, 'holder');
       await addDoc(categoriesCollection, {
-        category: categoryName
+        name: fullName,
+        relation: relation,
       });
     } catch (error) {
       throw error;
     }
   }
 
-  async getListCategories(userId: string): Promise<any[]> {
+  async getListHolder(userId: string): Promise<any[]> {
     try {
-      const q = query(collection(db, 'users', userId, 'categories'));
+      const q = query(collection(db, 'users', userId, 'holder'));
       const querySnapshot = await getDocs(q);
       return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     } catch (error) {
       throw error;
     }
   }
-
-  async updateCategory(userId: string, categoryId: string, newCategoryName: string): Promise<void> {
-    try {
-      const categoryDocRef = doc(db, 'users', userId, 'categories', categoryId);
-      await updateDoc(categoryDocRef, { category: newCategoryName });
-    } catch (error) {
-      throw error;
-    }
-  }
   
-  async deleteCategory(userId: string, categoryId: string): Promise<void> {
+  async deleteHolder(userId: string, holderId: string): Promise<void> {
     try {
-      const categoryDocRef = doc(db, 'users', userId, 'categories', categoryId);
+      const categoryDocRef = doc(db, 'users', userId, 'holder', holderId);
       await deleteDoc(categoryDocRef);
     } catch (error) {
       throw error;

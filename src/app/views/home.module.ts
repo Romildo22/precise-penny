@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './home/register/register.component';
 import { FinancialAnalysisComponent } from './home/financial-analysis/financial-analysis.component';
-import { CardComponent, NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { StartComponent } from './home/start/start.component';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
@@ -25,6 +25,15 @@ import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { CardsComponent } from './home/cards/cards.component';
 import { CategoriesComponent } from './home/categories/categories.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
+import { PlanInformationComponent } from '../shared/plan-information/plan-information.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent,
@@ -34,11 +43,11 @@ export const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'financial-analysis', component: FinancialAnalysisComponent },
-      { path: 'account', component: AccountComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'plans', component: PlansComponent },
+      { path: 'account', component: AccountComponent },
       { path: 'categories', component: CategoriesComponent },
-      { path: 'cards', component: CardComponent },
+      { path: 'cards', component: CardsComponent },
       { path: 'holders', component: HoldersComponent },
     ] 
   },
@@ -56,7 +65,14 @@ export const routes: Routes = [
     NgxChartsModule,
     MatSelectModule,
     FlexLayoutModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     RouterModule.forChild(routes),
+    NgxMaskDirective,
+    NgxMaskPipe,
   ],
   declarations: [
     HomeComponent,
@@ -77,6 +93,13 @@ export const routes: Routes = [
     PlansComponent,
     StartComponent,
     PhoneMaskDirective,
+    LoadingSpinnerComponent,
+    ConfirmDialogComponent,
+    PlanInformationComponent,
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    provideNgxMask(),
   ],
 })
 export class HomeModule { }

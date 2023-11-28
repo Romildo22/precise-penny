@@ -1,3 +1,4 @@
+@import 'src/styles.scss';
 .title{
     margin-top: 2%;
     font-size: 24px;
@@ -16,4 +17,66 @@
     border-bottom: 1px #111B47 solid;
     align-self: stretch;
     margin: 2vh auto;
+}
+
+.input-field {
+    .mat-form-field-wrapper {
+      padding-bottom: 0.25em; // Reduz o espaço abaixo do campo de entrada
+    }
+  
+    .mat-form-field-flex {
+      background-color: #fff; // Fundo branco para o campo de entrada
+      border-radius: 4px; // Bordas arredondadas
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1); // Sombra leve
+  
+      .mat-form-field-infix {
+        border-top: none; // Remove a borda superior interna do campo de entrada
+      }
+    }
+  
+    .mat-form-field-label {
+      color: #111B47; // Cor do label
+    }
+  
+    .mat-input-element {
+      color: #111B47; // Cor do texto dentro do campo de entrada
+    }
+  }
+  
+  // Ajustes para o botão que você adicionará
+  .btn-submit {
+    background-color: #091133; // Cor de fundo do botão
+    color: #fff; // Cor do texto do botão
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 2vh; // Espaço acima do botão
+    align-self: flex-end; // Alinha o botão ao final do contêiner
+  }
+
+  .btn-access {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-left: auto;
+    margin-right: 1vw;
+
+    padding: 0.5rem 2rem;
+    background-color: $blue-color-800;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-family: Roboto;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 500;
+    text-transform: capitalize;
+    cursor: pointer;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+
+    mat-icon {
+        font-size: 20px;
+    }
 }

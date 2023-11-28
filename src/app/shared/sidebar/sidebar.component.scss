@@ -6,6 +6,7 @@
     height: 100vh;
     display: flex;
     flex-shrink: 0;
+    overflow: hidden;
   }
   
   .sidenav {
@@ -40,7 +41,7 @@
           display: flex;
           justify-content: start;
           color: #11389A;
-          font-size: 18px;
+          font-size: 16px;
           font-family: Roboto;
           font-weight: 600;
           text-decoration: none;
@@ -52,6 +53,7 @@
   .mat-sidenav-content {
     flex: 1;
     height: 100%;
+    overflow: hidden;
   }
 
   .icons{
@@ -100,15 +102,15 @@
     .user-name{
       color: white;
       font-size: 20px;
-      font-family: Roboto Serif;
-      font-weight: 600;
+      font-family: Roboto;
+      font-weight: 400;
       cursor: default;
     }
   
     .user-plan {
       color: white;
       font-size: 14px;
-      font-family: Roboto Serif;
+      font-family: Roboto;
       font-weight: 400;
       cursor: default;
     }

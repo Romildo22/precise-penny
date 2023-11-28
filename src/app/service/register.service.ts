@@ -30,7 +30,6 @@ export class RegisterService {
         const result = await createUserWithEmailAndPassword(auth, email, password);
         
         if (result.user) {
-            console.log("User authenticated with UID:", result.user.uid);
             await setDoc(doc(db, 'users', result.user.uid), userData);
         }
 

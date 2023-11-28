@@ -54,8 +54,6 @@ export class AuthService {
         
             if (userSnapshot.exists()) {
                 const userData = userSnapshot.data();
-                console.log(userData)
-                console.log(userData?.['name'])
                 return userData; 
             } else {
                 return "erro ao recuperar os dados do usuário";

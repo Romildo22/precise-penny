@@ -10,50 +10,47 @@ const db = getFirestore(firebaseApp);
 @Injectable({
   providedIn: 'root'
 })
-
-export class CategoriesService {
+export class CardsService {
 
   formGroup: FormGroup;
 
   constructor(private fb: FormBuilder) {
-      this.formGroup = this.fb.group({
-          category: [],
-      })
+    this.formGroup = this.fb.group({
+        bankIssuer: [''],
+        typeCard: [''],
+        cardDigits: [''],
+        natureCard: [''],
+    })
   }
 
-  async addCategory(categoryName: string, userId: string): Promise<void> {
+  async addValuesCard(bankIssuer: String, typeCard: String, cardDigits: String, natureCard: String, userId: string): Promise<void> {
     try {
-      const categoriesCollection = collection(db, 'users', userId, 'categories');
+      const categoriesCollection = collection(db, 'users', userId, 'card');
+      cardDigits = `.${cardDigits.replace(/\D/g, '')}`;
       await addDoc(categoriesCollection, {
-        category: categoryName
+        bank: bankIssuer,
+        typeCard: typeCard,
+        cardDigits: cardDigits,
+        natureCard: natureCard,
       });
     } catch (error) {
       throw error;
     }
   }
 
-  async getListCategories(userId: string): Promise<any[]> {
+  async getListCard(userId: string): Promise<any[]> {
     try {
-      const q = query(collection(db, 'users', userId, 'categories'));
+      const q = query(collection(db, 'users', userId, 'card'));
       const querySnapshot = await getDocs(q);
       return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     } catch (error) {
       throw error;
     }
   }
-
-  async updateCategory(userId: string, categoryId: string, newCategoryName: string): Promise<void> {
-    try {
-      const categoryDocRef = doc(db, 'users', userId, 'categories', categoryId);
-      await updateDoc(categoryDocRef, { category: newCategoryName });
-    } catch (error) {
-      throw error;
-    }
-  }
   
-  async deleteCategory(userId: string, categoryId: string): Promise<void> {
+  async deleteCard(userId: string, cardId: string): Promise<void> {
     try {
-      const categoryDocRef = doc(db, 'users', userId, 'categories', categoryId);
+      const categoryDocRef = doc(db, 'users', userId, 'card', cardId);
       await deleteDoc(categoryDocRef);
     } catch (error) {
       throw error;

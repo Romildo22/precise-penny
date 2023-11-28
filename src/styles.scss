@@ -21,3 +21,19 @@ $text-color: #505F98;
 $button-primary-bg: #111B47;
 $button-secondary-bg: #091133;
 $sidenavbar-size: 20%;
+
+.no-visibility .content-cards {
+    visibility: hidden;
+}
+
+.no-visibility .content-category {
+    visibility: hidden;
+}
+
+.no-visibility .content-holder {
+    visibility: hidden;
+}
+
+.no-visibility .sidenav-container {
+    visibility: hidden;
+}
