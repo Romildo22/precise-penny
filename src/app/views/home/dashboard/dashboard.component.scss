@@ -6,6 +6,10 @@
     font-weight: 400;
 }
 
+.margin-chart{
+  margin-bottom: 1vh;
+}
+
 .align-dashboard{
     display: flex;
     flex-direction: column;
@@ -79,4 +83,32 @@
     mat-icon {
         font-size: 20px;
     }
+}
+
+.card-background{
+  border: none;
+  background-color: #ffffff;
+  border-radius: 8px !important;
+  box-shadow: 0px 8px 24px rgba(85, 90, 95, 0.2) !important;
+  margin-top: 1%;
+  overflow: hidden;
+  padding: 33px;
+  padding-bottom: 9vh;
+}
+
+.title-card{
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 30px;
+  color: #000000;
+  border-bottom: 1px solid #c4c4c4;
+}
+
+:host ::ng-deep{
+  text.ng-star-inserted{
+    text-anchor: middle;
+    transform: rotate(0);
+  }
 }

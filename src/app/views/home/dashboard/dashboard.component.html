@@ -67,35 +67,107 @@
     </mat-card>
   </div>
 
-  <div>
-    <ngx-charts-bar-vertical
-      [results]="chartData"
-      [view]="[700, 400]"
-      [xAxis]="true"
-      [yAxis]="true"
-      [gradient]="true"
-      [legend]="true"
-      [legendPosition]="legendPos"
-      [showXAxisLabel]="true"
-      [showYAxisLabel]="true"
-      xAxisLabel="Categoria"
-      yAxisLabel="Valor (R$)"
-      [color]="colorScheme">
-    </ngx-charts-bar-vertical>
-    <!-- <ngx-charts-line-chart
-      [results]="chartData"
-      [view]="[700, 400]"
-      [xAxis]="true"
-      [yAxis]="true"
-      [gradient]="true"
-      [legend]="true"
-      [legendPosition]="legendPos"
-      [showXAxisLabel]="true"
-      [showYAxisLabel]="true"
-      xAxisLabel="Categoria"
-      yAxisLabel="Valor (R$)"
-      [customColors]="colorScheme">
-    </ngx-charts-line-chart> -->
+  <div class="margin-chart" fxFlex="100%" fxLayout="row wrap" fxLayout.xs="column" fxLayout.md="column" fxLayout.sm="column" fxLayoutGap="2vh">
+    <mat-card fxFlex="48.5%" class="card-background">
+      <mat-card-header>
+        <mat-card-title class="title-card">
+          <p>Distribuição de Gastos por Categoria</p>
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <ngx-charts-bar-vertical
+          [results]="chartDataCategory"
+          [xAxis]="true"
+          [yAxis]="true"
+          [gradient]="false"
+          [legend]="true"
+          [legendPosition]="legendPos"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          xAxisLabel="Categorias"
+          yAxisLabel="Valor (R$)"
+          [yAxisTickFormatting]="yAxisTickFormatting"
+          [scheme]="colorScheme">
+        </ngx-charts-bar-vertical>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card fxFlex="48.5%" class="card-background">
+      <mat-card-header>
+        <mat-card-title class="title-card">
+          <p>Distribuição de Gastos por Cartão de Crédito</p>
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <ngx-charts-bar-vertical
+          [results]="chartDataCard"
+          [xAxis]="true"
+          [yAxis]="true"
+          [gradient]="false"
+          [legend]="true"
+          [legendPosition]="legendPos"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          xAxisLabel="Cartões"
+          yAxisLabel="Valor (R$)"
+          [yAxisTickFormatting]="yAxisTickFormatting"
+          [scheme]="colorScheme">
+        </ngx-charts-bar-vertical>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card fxFlex="48.5%" class="card-background">
+      <mat-card-header>
+        <mat-card-title class="title-card">
+          <p>Distribuição de Gastos por titular</p>
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <ngx-charts-bar-vertical
+          [results]="chartDataHolder"
+          [xAxis]="true"
+          [yAxis]="true"
+          [gradient]="false"
+          [legend]="true"
+          [legendPosition]="legendPos"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          xAxisLabel="Titulares"
+          yAxisLabel="Valor (R$)"
+          [yAxisTickFormatting]="yAxisTickFormatting"
+          [scheme]="colorScheme">
+        </ngx-charts-bar-vertical>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card fxFlex="48.5%" class="card-background">
+      <mat-card-header>
+        <mat-card-title class="title-card">
+          <p>Resumo de Gastos Mensais</p>
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <ngx-charts-bar-vertical
+          [results]="chartDataDate"
+          [xAxis]="true"
+          [yAxis]="true"
+          [gradient]="false"
+          [legend]="true"
+          [legendPosition]="legendPos"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          xAxisLabel="Meses"
+          yAxisLabel="Valor (R$)"
+          [yAxisTickFormatting]="yAxisTickFormatting"
+          [scheme]="colorScheme">
+        </ngx-charts-bar-vertical>
+      </mat-card-content>
+    </mat-card>
+
   </div>
 
   <div>

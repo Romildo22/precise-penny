@@ -24,16 +24,14 @@ export class DashboardComponent implements OnInit {
   loading$ = this.loadingService.loading$;
   currentUserID: string | undefined = ''
 
-  chartData: SimpleGraphicObject[] = [];
+  chartDataCategory: SimpleGraphicObject[] = [];
+  chartDataCard: SimpleGraphicObject[] = [];
+  chartDataHolder: SimpleGraphicObject[] = [];
+  chartDataDate: any = [];
   legendPos: any = 'below'
-  colorScheme = {
-    domain: ['#111B47'] // Define a cor para todas as séries
+  colorScheme: any = {
+    domain: ['#37447E', '#929ECC', '#6F7CB2', '#505F98', '#111B47']
   };
-  
-  // colorScheme = [
-  //   {name: 'Receita', value: '#5AA454'},
-  //   {name: 'Despesas', value: '#E53935'},
-  // ];
 
   constructor(  private service: DashboardService, 
                 private router: Router, 
@@ -43,7 +41,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.getUserId();
-    }, 800);
+    }, 1000);
   }
 
   getAllLists(){
@@ -53,7 +51,7 @@ export class DashboardComponent implements OnInit {
       this.getListHolders();
       this.getListDates();
       this.formGroup.get('date')?.setValue(new Date);
-    }, 400);
+    }, 800);
   }
 
   async getUserId(){
@@ -117,19 +115,9 @@ export class DashboardComponent implements OnInit {
       alert("Por favor, insira o valor");
       return false;
     }
-    else if(!installment)
-    {
-      alert("Por favor, insira a parcela");
-      return false;
-    }
     else if(!card)
     {
       alert("Por favor, selecione o cartão");
-      return false;
-    }
-    else if(!description)
-    {
-      alert("Por favor, insira uma descrição");
       return false;
     }
     else if(!category)
@@ -194,13 +182,16 @@ export class DashboardComponent implements OnInit {
       if(currentUserUID)
       {
         this.listDate = await this.service.getListDates(currentUserUID);
+        console.log(this.listDate)
         this.setInitialListChartCategory(this.listDate)
-        console.log(this.listDate);
+        this.setInitialListCharCard(this.listDate)
+        this.setInitialListChartHolder(this.listDate)
+        this.setInitialListChartDate(this.listDate)
       }
     } 
     catch(error)
     {
-
+      console.error('Erro ao carregar a lista de dados', error);
     } finally {
       setTimeout(() => {
         this.loadingService.hide();
@@ -209,13 +200,44 @@ export class DashboardComponent implements OnInit {
   }
 
   setInitialListChartCategory(data: Array<any>) {
-    // Primeiro, transforme os dados no formato de 'SimpleGraphicObject'
     const transformedData = ChartsUtil.getSimpleGraphicObject(data, 'category', 'value', 'description');
+    this.chartDataCategory = transformedData;
+  }
 
-    // Agora, reestruture os dados para o formato que ngx-charts espera
-    // this.chartData = this.restructureDataForChart(transformedData);
-    this.chartData = transformedData;
-    console.log("ChartData for ngx-charts: ", this.chartData);
+  setInitialListCharCard(data: Array<any>) {
+    const transformedData = ChartsUtil.getSimpleGraphicObject(data, 'card', 'value', 'description');
+    this.chartDataCard = transformedData;
+  }
+
+  setInitialListChartHolder(data: Array<any>) {
+    const transformedData = ChartsUtil.getSimpleGraphicObject(data, 'assignment', 'value', 'description');
+    this.chartDataHolder = transformedData;
+  }
+
+  setInitialListChartDate(data: Array<any>) {
+    const dataWithConvertedDates = data.map(d => ({
+      ...d,
+      monthYear: new Date(d.date.seconds * 1000).toLocaleDateString('pt-BR', {
+        month: 'long'
+      }),
+      monthNumber: new Date(d.date.seconds * 1000).getMonth()
+    }));
+  
+    const groupedData = dataWithConvertedDates.reduce((acc, curr) => {
+      const monthYear = curr.monthYear;
+      if (!acc[monthYear]) {
+        acc[monthYear] = { name: monthYear, value: 0, monthNumber: curr.monthNumber };
+      }
+      acc[monthYear].value += curr.value;
+      return acc;
+    }, {});
+
+    const sortedData = Object.keys(groupedData)
+      .map(key => groupedData[key])
+      .sort((a, b) => a.monthNumber - b.monthNumber);
+
+    const transformedData = sortedData.map(({ name, value }) => ({ name, value }));
+    this.chartDataDate = transformedData;
   }
   
   redirectToCardPage() {
@@ -234,22 +256,8 @@ export class DashboardComponent implements OnInit {
     return this.service.formGroup
   }
 
-  restructureDataForChart(data: Array<SimpleGraphicObject>): CompositeGraphicObject[] {
-    const chartData: CompositeGraphicObject[] = [];
-
-    data.forEach(item => {
-      // Encontre a série correspondente à categoria ou crie uma nova
-      let seriesObject = chartData.find(series => series.name === item.name);
-      if (!seriesObject) {
-        seriesObject = { name: item.name, series: [] };
-        chartData.push(seriesObject);
-      }
-
-      // Adicione o valor ao array de série
-      seriesObject.series.push({ name: item.extra?.data || 'Total', value: item.value , extra: ''});
-    });
-
-    return chartData;
+  yAxisTickFormatting(val: { toLocaleString: () => any; }){
+    return val.toLocaleString();
   }
 
 }
