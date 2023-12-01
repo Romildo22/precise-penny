@@ -2,13 +2,13 @@
   <div class="toolbar-content">
     
     <div class="nav-links">
-      <span routerLink="/" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">Início</span>
-      <span routerLink="about-us" routerLinkActive="selected" routerLinkActive="selected">Sobre</span>
-      <span routerLinkActive="selected">Planos</span>
+      <span (click)="scrollToTop()" routerLink="/" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">Início</span>
+      <span (click)="scrollToTop()" routerLink="about-us" routerLinkActive="selected" routerLinkActive="selected">Sobre</span>
+      <span (click)="scrollToTop()" routerLink="plans" routerLinkActive="selected" routerLinkActive="selected">Planos</span>
     </div>
 
     <img src="/assets/logo.svg" alt="Logo" class="logo">
 
-    <span routerLink="login" routerLinkActive="selected" class="btn-access">Acessar Conta</span>
+    <span (click)="scrollToTop()" routerLink="login" routerLinkActive="selected" class="btn-access">Acessar Conta</span>
   </div>
 </mat-toolbar>

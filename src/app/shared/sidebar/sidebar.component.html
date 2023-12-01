@@ -2,27 +2,27 @@
   <mat-sidenav #sidenav mode="side" opened="true" class="sidenav">
     <img src="/assets/logo.svg" alt="Logo" class="logo">
     <mat-nav-list>
-      <a mat-list-item routerLink="dashboard" routerLinkActive="selected" routerLinkActive="selected">
+      <a (click)="scrollToTop()" mat-list-item routerLink="dashboard" routerLinkActive="selected" routerLinkActive="selected">
         <img src="/assets/icon-dashboard.svg" alt="Ícone Dashboard" class="icons">
         Dashboard
       </a>
-      <a mat-list-item routerLink="plans" routerLinkActive="selected" routerLinkActive="selected">
+      <a (click)="scrollToTop()" mat-list-item routerLink="plans" routerLinkActive="selected" routerLinkActive="selected">
         <img src="/assets/icon-plans.svg" alt="Ícone Plano" class="icons">
         Planos
       </a>
-      <a mat-list-item routerLink="categories" routerLinkActive="selected" routerLinkActive="selected">
+      <a (click)="scrollToTop()" mat-list-item routerLink="categories" routerLinkActive="selected" routerLinkActive="selected">
         <img src="/assets/icon-category.svg" alt="Ícone Cadastro Categorias" class="icons">
         Cadastro de Categorias
       </a>
-      <a mat-list-item routerLink="cards" routerLinkActive="selected" routerLinkActive="selected">
+      <a (click)="scrollToTop()" mat-list-item routerLink="cards" routerLinkActive="selected" routerLinkActive="selected">
         <img src="/assets/icon-card.svg" alt="Ícone Cadastro de Cartões" class="icons">
         Cadastro de Cartões
       </a>
-      <a mat-list-item routerLink="holders" routerLinkActive="selected" routerLinkActive="selected">
+      <a (click)="scrollToTop()" mat-list-item routerLink="holders" routerLinkActive="selected" routerLinkActive="selected">
         <img src="/assets/icon-holders.svg" alt="Ícone Cadastro de Titulares" class="icons">
         Cadastro de Titulares
       </a>
-      <a mat-list-item routerLink="manage" routerLinkActive="selected" routerLinkActive="selected">
+      <a (click)="scrollToTop()" mat-list-item routerLink="manage" routerLinkActive="selected" routerLinkActive="selected">
         <img src="/assets/icon-manage.png" alt="Ícone Gerenciar Despesas" class="icons">
         Gerenciar Despesas
       </a>
