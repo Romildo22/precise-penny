@@ -33,8 +33,8 @@ export class DashboardComponent implements OnInit {
     domain: ['#37447E', '#929ECC', '#6F7CB2', '#505F98', '#111B47']
   };
 
-  constructor(  private service: DashboardService, 
-                private router: Router, 
+  constructor(  private service: DashboardService,
+                private router: Router,
                 public loadingService: LoadingService,
                 private authService: AuthService, ) { }
 
@@ -146,7 +146,7 @@ export class DashboardComponent implements OnInit {
         this.listAssignment = this.listAssignment.filter(item => !Array.isArray(item.name)).sort((a, b) => a.name.localeCompare(b.name));
       }
     } catch (error) {
-      console.error('Erro ao carregar os cartões:', error);
+      console.error('Erro ao carregar os titulares:', error);
     }
   }
 
@@ -159,7 +159,7 @@ export class DashboardComponent implements OnInit {
       }
     } catch (error) {
       console.error('Erro ao carregar os cartões:', error);
-    } 
+    }
   }
 
   async getListCategory(){
@@ -170,7 +170,7 @@ export class DashboardComponent implements OnInit {
         this.listCategory = this.listCategory.filter(item => !Array.isArray(item.category)).sort((a, b) => a.category.localeCompare(b.category));
       }
     } catch (error) {
-      console.error('Erro ao carregar os cartões:', error);
+      console.error('Erro ao carregar os categorias:', error);
     }
   }
 
@@ -188,7 +188,7 @@ export class DashboardComponent implements OnInit {
         this.setInitialListChartHolder(this.listDate)
         this.setInitialListChartDate(this.listDate)
       }
-    } 
+    }
     catch(error)
     {
       console.error('Erro ao carregar a lista de dados', error);
@@ -222,7 +222,7 @@ export class DashboardComponent implements OnInit {
       }),
       monthNumber: new Date(d.date.seconds * 1000).getMonth()
     }));
-  
+
     const groupedData = dataWithConvertedDates.reduce((acc, curr) => {
       const monthYear = curr.monthYear;
       if (!acc[monthYear]) {
@@ -239,7 +239,7 @@ export class DashboardComponent implements OnInit {
     const transformedData = sortedData.map(({ name, value }) => ({ name, value }));
     this.chartDataDate = transformedData;
   }
-  
+
   redirectToCardPage() {
     this.router.navigate(['/cards']);
   }
