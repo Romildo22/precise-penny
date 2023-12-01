@@ -20,7 +20,7 @@
 
       <button class="color-alter" *ngIf="isLoggedIn && userPlan !== 'Plano Básico'" >Alterar Plano</button>
       <button class="color-current" *ngIf="isLoggedIn && userPlan === 'Plano Básico'" >Plano Atual</button>
-      <button class="color-alter" *ngIf="!isLoggedIn" >Adquira Agora</button>
+      <button class="color-alter" *ngIf="!isLoggedIn" routerLink="plans" (click)="scrollToTop()" >Adquira Agora</button>
     </div>
 
     <div class="plan">
@@ -38,7 +38,7 @@
 
       <button class="color-alter" *ngIf="isLoggedIn && userPlan !== 'Plano Premium'" >Alterar Plano</button>
       <button class="color-current" *ngIf="isLoggedIn && userPlan === 'Plano Premium'" >Plano Atual</button>
-      <button class="color-alter" *ngIf="!isLoggedIn" >Adquira Agora</button>
+      <button class="color-alter" *ngIf="!isLoggedIn" routerLink="plans" (click)="scrollToTop()" >Adquira Agora</button>
 
     </div>
 
@@ -57,9 +57,11 @@
 
       <button class="color-alter" *ngIf="isLoggedIn && userPlan !== 'Plano Elite'" >Alterar Plano</button>
       <button class="color-current" *ngIf="isLoggedIn && userPlan === 'Plano Elite'" >Plano Atual</button>
-      <button class="color-alter" *ngIf="!isLoggedIn" >Adquira Agora</button>
+      <button class="color-alter" *ngIf="!isLoggedIn" routerLink="plans" (click)="scrollToTop()" >Adquira Agora</button>
 
     </div>
-  </div>
 
+  </div>
+  
+  <p *ngIf="!isLoggedIn" class="adjust-text-footer-plan" >Aproveite os Benefícios do Plano Básico de Graça por 7 Dias!</p>
 </div>

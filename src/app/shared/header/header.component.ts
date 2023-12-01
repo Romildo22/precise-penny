@@ -46,6 +46,12 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  scrollToTop(){
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
   onLogout() {
     this.loginService.logout();
     this.router.navigate(['/']);

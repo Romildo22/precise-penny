@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
   
   email: string = ''
   password: string = ''
+  inputType: string = 'password'
 
   constructor(private router: Router, private service: LoginService ) { }
 
@@ -58,6 +59,11 @@ export class LoginComponent implements OnInit {
 
   public get formGroup(){
     return this.service.formGroup;
+  }
+
+  typePassword(event: Event): void{
+    event.preventDefault();
+    this.inputType = this.inputType == 'password' ? 'text' : 'password'
   }
 
 }
