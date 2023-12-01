@@ -26,7 +26,7 @@ mat-toolbar.logged-out {
 .nav-links {
   display: flex;
   justify-content: space-between;
-  gap: 90%;
+  gap: 35%;
 }
 
 span {
@@ -67,7 +67,5 @@ span {
 }
 
 .logo {
-  height: 20vh;
   width: 20vw;
-  margin-top: 12vh;
 }

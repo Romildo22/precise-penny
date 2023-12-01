@@ -7,43 +7,23 @@
 }
 
 .start-container {
-  height: 100vh;
-  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0rem 10rem 5rem 14rem;
+  padding: 5em 4em;
   background-color: #f8f9fa;
-  overflow-x: hidden; 
 
   .content{
-    z-index: 1;
-    max-width: 900px;
-    margin-left: 26vw;
-    margin-top: -12vh;
+    padding-left: 2%;
 
     h1 {
-        width: 100%;
-        color: $title-text;
-        margin-bottom: 1rem;
         font-size: 36px;
-        font-family: Roboto;
         font-weight: 500;
-        line-height: 50px;
-        letter-spacing: 1px;
-        word-wrap: break-word;
-        text-align: left !important; 
     }
 
     p {
         color: $text-color;
         font-size: 16px;
-        line-height: 2rem;
-        margin-bottom: 2rem;
-        font-family: Roboto;
-        font-weight: 400;
-        word-wrap: break-word;
-        text-align: justify !important; 
+        line-height: 1.5em;
+        text-align: justify;
     }
 
     .buttons {
@@ -61,22 +41,11 @@
     }
   }
 
-  .align-texts-column{
-    display: flex;
-    flex-direction: column;
-  }
+.content__linkedin{
+  display: flex;
+}
 
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    width: 50vw;
-  }
-
-  &:nth-child(1)::after {
-    top: -15vh;
-    left: 10vw;
-    background: url('/assets/about-us.svg') no-repeat left center; 
-  }
+.content__image{
+  width: 96%;
+}
 }
