@@ -34,6 +34,8 @@ import { PlanInformationComponent } from '../shared/plan-information/plan-inform
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { ManageComponent } from './home/manage/manage.component';
+import { FormsModule } from '@angular/forms';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent,
@@ -49,7 +51,8 @@ export const routes: Routes = [
       { path: 'categories', component: CategoriesComponent },
       { path: 'cards', component: CardsComponent },
       { path: 'holders', component: HoldersComponent },
-    ] 
+      { path: 'manage', component: ManageComponent },
+    ]
   },
 ];
 
@@ -73,6 +76,7 @@ export const routes: Routes = [
     RouterModule.forChild(routes),
     NgxMaskDirective,
     NgxMaskPipe,
+    FormsModule
   ],
   declarations: [
     HomeComponent,
@@ -96,6 +100,7 @@ export const routes: Routes = [
     LoadingSpinnerComponent,
     ConfirmDialogComponent,
     PlanInformationComponent,
+    ManageComponent
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
