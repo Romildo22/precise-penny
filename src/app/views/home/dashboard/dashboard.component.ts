@@ -1,12 +1,10 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { DashboardService } from 'src/app/service/dashboard.service';
 import { LoadingService } from 'src/app/service/loading.service';
-import { ChartData } from 'src/app/shared/chart/chartData';
 import { ChartsUtil } from 'src/app/shared/chart/charts-utils';
-import { CompositeGraphicObject } from 'src/app/shared/chart/composite-graphic-object';
 import { SimpleGraphicObject } from 'src/app/shared/chart/simple-graphic-object';
 
 @Component({
@@ -25,13 +23,20 @@ export class DashboardComponent implements OnInit {
   currentUserID: string | undefined = ''
 
   chartDataCategory: SimpleGraphicObject[] = [];
+  chartDataCategoryPercentage: SimpleGraphicObject[] = [];
   chartDataCard: SimpleGraphicObject[] = [];
+  chartDataCardPercentage: SimpleGraphicObject[] = [];
   chartDataHolder: SimpleGraphicObject[] = [];
   chartDataDate: any = [];
   legendPos: any = 'below'
   colorScheme: any = {
     domain: ['#37447E', '#929ECC', '#6F7CB2', '#505F98', '#111B47']
   };
+
+  averageSpendingMonth: number = 0
+  averageSpendingInMainCategory: number = 0
+  averageSpendingByHolder: number = 0
+  averageSpendingInMonth: number = 0
 
   constructor(  private service: DashboardService,
                 private router: Router,
@@ -59,7 +64,7 @@ export class DashboardComponent implements OnInit {
       this.currentUserID = await this.authService.getCurrentUserUID();
       this.getAllLists();
     } catch (error) {
-      alert("Erro ao recuperar o usuário " + error);
+      console.error("Erro ao recuperar o usuário " + error);
     }
   }
 
@@ -90,7 +95,7 @@ export class DashboardComponent implements OnInit {
         this.getListDates();
       }
     } catch (error) {
-      alert('Erro ao adicionar categoria: ' + error);
+      console.error('Erro ao adicionar categoria: ' + error);
     } finally {
       setTimeout(() => {
         this.loadingService.hide();
@@ -182,11 +187,17 @@ export class DashboardComponent implements OnInit {
       if(currentUserUID)
       {
         this.listDate = await this.service.getListDates(currentUserUID);
-        console.log(this.listDate)
         this.setInitialListChartCategory(this.listDate)
+        this.setInitialListChartCategoryPercentage(this.listDate)
         this.setInitialListCharCard(this.listDate)
+        this.setInitialListCharCardPercentage(this.listDate)
         this.setInitialListChartHolder(this.listDate)
         this.setInitialListChartDate(this.listDate)
+
+        this.setValueAverageSpending(this.listDate)
+        this.setValueAverageSpendingInMainCategory(this.listDate)
+        this.setValueAverageSpendingByHolder(this.listDate)
+        this.setValueExpensesCountInMonth(this.listDate)
       }
     }
     catch(error)
@@ -201,16 +212,67 @@ export class DashboardComponent implements OnInit {
 
   setInitialListChartCategory(data: Array<any>) {
     const transformedData = ChartsUtil.getSimpleGraphicObject(data, 'category', 'value', 'description');
+    transformedData.sort((a,b) => b.value - a.value)
     this.chartDataCategory = transformedData;
+  }
+
+  setInitialListChartCategoryPercentage(data: Array<any>) {
+    const sumByCard: Record<string, number> = data.reduce((acc, item) => {
+      const value = parseFloat(item.value);
+      if (!isNaN(value)) { 
+        acc[item.category] = (acc[item.category] || 0) + value;
+      }
+      return acc;
+    }, {});
+  
+    const totalValue = Object.values(sumByCard).reduce((sum, current) => sum + current, 0);
+
+    const transformedData = Object.entries(sumByCard).map(([category, value]) => {
+      return new SimpleGraphicObject(
+        category,
+        (value / totalValue) * 100,
+        null 
+      );
+    });
+  
+    transformedData.sort((a, b) => a.name.localeCompare(b.name));
+  
+    this.chartDataCategoryPercentage = transformedData;
   }
 
   setInitialListCharCard(data: Array<any>) {
     const transformedData = ChartsUtil.getSimpleGraphicObject(data, 'card', 'value', 'description');
+    transformedData.sort((a,b) => b.value - a.value)
     this.chartDataCard = transformedData;
   }
 
+  setInitialListCharCardPercentage(data: Array<any>) {
+    const sumByCard: Record<string, number> = data.reduce((acc, item) => {
+      const value = parseFloat(item.value);
+      if (!isNaN(value)) { 
+        acc[item.card] = (acc[item.card] || 0) + value;
+      }
+      return acc;
+    }, {});
+  
+    const totalValue = Object.values(sumByCard).reduce((sum, current) => sum + current, 0);
+
+    const transformedData = Object.entries(sumByCard).map(([card, value]) => {
+      return new SimpleGraphicObject(
+        card,
+        (value / totalValue) * 100,
+        null 
+      );
+    });
+  
+    transformedData.sort((a, b) => a.name.localeCompare(b.name));
+  
+    this.chartDataCardPercentage = transformedData;
+  }  
+
   setInitialListChartHolder(data: Array<any>) {
     const transformedData = ChartsUtil.getSimpleGraphicObject(data, 'assignment', 'value', 'description');
+    transformedData.sort((a,b) => b.value - a.value)
     this.chartDataHolder = transformedData;
   }
 
@@ -237,6 +299,7 @@ export class DashboardComponent implements OnInit {
       .sort((a, b) => a.monthNumber - b.monthNumber);
 
     const transformedData = sortedData.map(({ name, value }) => ({ name, value }));
+    transformedData.sort((a,b) => b.value - a.value)
     this.chartDataDate = transformedData;
   }
 
@@ -258,6 +321,102 @@ export class DashboardComponent implements OnInit {
 
   yAxisTickFormatting(val: { toLocaleString: () => any; }){
     return val.toLocaleString();
+  }
+
+  setValueAverageSpending(data: Array<any>) {
+    let total: number = 0;
+    const currentMonth = new Date().getMonth() + 1;
+    const currentYear = new Date().getFullYear();
+  
+    data.forEach(element => {
+      if (element.category && element.date) {
+        const date = new Date(element.date.seconds * 1000);
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        
+        if (month === currentMonth && year === currentYear) {
+          total += element.value;
+        }
+      }
+    });
+  
+    this.averageSpendingMonth = total > 0 ? total : 0;
+  }
+
+  setValueAverageSpendingInMainCategory(data: Array<any>) {
+    let total: number = 0;
+    let quantidade: number = 0;
+    const categoryTotals: { [key: string]: { total: number; count: number } } = {};
+  
+    // Acumular o total e a contagem por categoria.
+    data.forEach(element => {
+      if (element.category) {
+        if (categoryTotals[element.category]) {
+          categoryTotals[element.category].total += element.value;
+          categoryTotals[element.category].count += 1;
+        } else {
+          categoryTotals[element.category] = { total: element.value, count: 1 };
+        }
+      }
+    });
+  
+    // Determinar a categoria principal (com maior gasto total).
+    const mainCategory = Object.keys(categoryTotals).reduce((a, b) => 
+      categoryTotals[a].total > categoryTotals[b].total ? a : b
+    );
+  
+    // Se a categoria principal foi encontrada, calcular a média.
+    if (mainCategory) {
+      total = categoryTotals[mainCategory].total;
+      quantidade = categoryTotals[mainCategory].count;
+    }
+  
+    this.averageSpendingInMainCategory = quantidade > 0 ? total / quantidade : 0;
+  }
+
+  setValueAverageSpendingByHolder(data: Array<any>) {
+    let sumOfAverages: number = 0;
+    let totalHolders: number = 0;
+    const totalsByHolder: { [key: string]: number } = {};
+    const countsByHolder: { [key: string]: number } = {};
+  
+    // Acumular o total e a contagem por titular.
+    data.forEach(element => {
+      if (element.assignment) {
+        totalsByHolder[element.assignment] = (totalsByHolder[element.assignment] || 0) + element.value;
+        countsByHolder[element.assignment] = (countsByHolder[element.assignment] || 0) + 1;
+      }
+    });
+  
+    // Calcular a média para cada titular e somar essas médias.
+    Object.keys(totalsByHolder).forEach(holder => {
+      const average = totalsByHolder[holder] / countsByHolder[holder];
+      sumOfAverages += average;
+      totalHolders += 1;
+    });
+  
+    // Calcular a média geral das médias de gastos por titular.
+    this.averageSpendingByHolder = totalHolders > 0 ? sumOfAverages / totalHolders : 0;
+  }
+
+  setValueExpensesCountInMonth(data: Array<any>) {
+    const currentMonth = new Date().getMonth() + 1;
+    const currentYear = new Date().getFullYear();
+    let count = 0;
+  
+    data.forEach(element => {
+      if (element.category && element.date) {
+        const date = new Date(element.date.seconds * 1000);
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+  
+        if (month === currentMonth && year === currentYear) {
+          count++;
+        }
+      }
+    });
+  
+    this.averageSpendingInMonth = count;
   }
 
 }

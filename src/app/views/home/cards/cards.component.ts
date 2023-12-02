@@ -66,7 +66,7 @@ export class CardsComponent implements OnInit {
         this.getList();
       }
     } catch (error) {
-      alert('Erro ao adicionar categoria: ' + error);
+      console.error('Erro ao adicionar categoria: ' + error);
     } finally {
       setTimeout(() => {
         this.loadingService.hide();
@@ -92,7 +92,7 @@ export class CardsComponent implements OnInit {
     }
     else if(!natureCard)
     {
-      alert("Por favor, selecione a nature do cartão.");
+      alert("Por favor, selecione a natureza do cartão.");
       return false;
     }
     return true

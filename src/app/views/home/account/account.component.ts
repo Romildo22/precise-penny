@@ -36,7 +36,6 @@ export class AccountComponent implements OnInit {
   }
 
   onChangePassword() {
-    console.log("logica para recuperar senha")
   }
   
   onLogout() {

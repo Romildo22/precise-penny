@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { initializeApp } from 'firebase/app';
 import { addDoc, collection, getFirestore, getDocs, query, where, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { environment } from 'src/environments/environment';
@@ -14,7 +14,7 @@ export class DashboardService {
 
     constructor(private fb: FormBuilder) {
         this.formGroup = this.fb.group({
-            date: [],
+            date: new FormControl({value: '', disabled: true}, Validators.required),
             assignment: [],
             value: [],
             installment: [],

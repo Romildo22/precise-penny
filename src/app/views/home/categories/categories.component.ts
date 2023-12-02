@@ -44,7 +44,7 @@ export class CategoriesComponent implements OnInit {
         alert("Por favor, insira uma categoria válida.");
       }
     } catch (error) {
-      alert('Erro ao adicionar categoria: ' + error);
+      console.error('Erro ao adicionar categoria: ' + error);
     } finally {
       setTimeout(() => {
         this.loadingService.hide();

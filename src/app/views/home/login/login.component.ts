@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
     if(this.email && this.password) {
       this.service.login(this.email, this.password)
       .then(res => {
-        alert('Login bem-sucedido!',);
         this.router.navigate(['/dashboard']);
       })
       .catch(error => {

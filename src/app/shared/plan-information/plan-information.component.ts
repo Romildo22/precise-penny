@@ -41,7 +41,6 @@ export class PlanInformationComponent implements OnInit {
     this.userData = await this.authService.getUserLoggedIn();
     if(this.userData)
     {
-      console.log("dados: ", this.userData)
       this.userPlan = this.userData?.plan
     }
   }

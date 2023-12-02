@@ -42,7 +42,7 @@ async getUserId(){
       this.getListExpenses();
     }, 800);
   } catch (error) {
-    alert("Erro ao recuperar o usuário " + error);
+    console.error("Erro ao recuperar o usuário " + error);
   }
 }
 
@@ -55,7 +55,6 @@ async getListExpenses(){
     {
       this.listExpenses = await this.service.listExpenses(currentUserUID);
       this.convertDate(this.listExpenses)
-      console.log(this.listExpenses)
     }
   }
   catch(error)
@@ -169,7 +168,6 @@ updateItem(item: any): void {
     .then(() => {
       // Código a ser executado após a atualização bem-sucedida
       item.editing = false; // Desabilitar o modo de edição
-      console.log('Despesa atualizada com sucesso');
     })
     .catch((error) => {
       // Tratamento de erro
@@ -198,9 +196,7 @@ convertDateToISO(dateStr: string): string {
 
 // Função para converter data de 'yyyy-MM-dd' para 'DD/MM/YYYY'
 convertDateToBRFormat(dateStr: string): string {
-  console.log("dateStr", dateStr)
   const [year, month, day] = dateStr.split('-');
-  console.log("const", dateStr.split('-'))
   return `${day}/${month}/${year}`;
 }
 

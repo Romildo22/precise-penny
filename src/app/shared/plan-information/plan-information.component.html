@@ -63,5 +63,5 @@
 
   </div>
   
-  <p *ngIf="!isLoggedIn" class="adjust-text-footer-plan" >Aproveite os Benefícios do Plano Básico de Graça por 7 Dias!</p>
+  <p *ngIf="!isLoggedIn" class="adjust-text-footer-plan" routerLink="plans" (click)="scrollToTop()">Aproveite os Benefícios do Plano Básico de Graça por 7 Dias!</p>
 </div>

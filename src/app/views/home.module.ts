@@ -32,10 +32,23 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 import { PlanInformationComponent } from '../shared/plan-information/plan-information.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { ManageComponent } from './home/manage/manage.component';
 import { FormsModule } from '@angular/forms';
+import { CustomDateAdapter } from '../shared/custom-date/custom-date.component';
+
+export const MY_DATE_FORMATS = {
+  parse: {
+    dateInput: 'dd/MM/yyyy',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 export const routes: Routes = [
   { path: '', component: HomeComponent,
@@ -103,6 +116,7 @@ export const routes: Routes = [
     ManageComponent
   ],
   providers: [
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
     provideNgxMask(),
   ],

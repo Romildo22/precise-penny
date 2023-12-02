@@ -7,7 +7,8 @@
 }
 
 .margin-chart{
-  margin-bottom: 1vh;
+  margin-bottom: 2vh;
+  margin-left: 1.5vh;
 }
 
 .align-dashboard{
@@ -25,38 +26,37 @@
 
 .input-field {
     .mat-form-field-wrapper {
-      padding-bottom: 0.25em; // Reduz o espaço abaixo do campo de entrada
+      padding-bottom: 0.25em; 
     }
   
     .mat-form-field-flex {
-      background-color: #fff; // Fundo branco para o campo de entrada
-      border-radius: 4px; // Bordas arredondadas
-      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1); // Sombra leve
+      background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1); 
   
       .mat-form-field-infix {
-        border-top: none; // Remove a borda superior interna do campo de entrada
+        border-top: none; 
       }
     }
   
     .mat-form-field-label {
-      color: #111B47; // Cor do label
+      color: #111B47; 
     }
   
     .mat-input-element {
-      color: #111B47; // Cor do texto dentro do campo de entrada
+      color: #111B47; 
     }
   }
   
-  // Ajustes para o botão que você adicionará
   .btn-submit {
-    background-color: #091133; // Cor de fundo do botão
-    color: #fff; // Cor do texto do botão
+    background-color: #091133; 
+    color: #fff; 
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 2vh; // Espaço acima do botão
-    align-self: flex-end; // Alinha o botão ao final do contêiner
+    margin-top: 2vh;
+    align-self: flex-end; 
   }
 
   .btn-access {
@@ -66,6 +66,7 @@
     gap: 0.5rem;
     margin-left: auto;
     margin-right: 1vw;
+    margin-bottom: 2vh;
 
     padding: 0.5rem 2rem;
     background-color: $blue-color-800;
@@ -94,6 +95,18 @@
   overflow: hidden;
   padding: 33px;
   padding-bottom: 9vh;
+}
+
+.card-background-kpi{
+  border: none;
+  background-color: #ffffff;
+  border-radius: 8px !important;
+  box-shadow: 0px 8px 24px rgba(85, 90, 95, 0.2) !important;
+  margin: 2vh 0;
+  overflow: hidden;
+  padding: 33px;
+  min-width: 14.5vw;
+  height: 6vh;
 }
 
 .title-card{

@@ -16,9 +16,10 @@
   }
 
   .logo {
-    height: 16vh;
-    width: 16vw;
-    margin-top: -4vh;
+    height: 18vh;
+    width: 14vw;
+    margin-top: -6vh;
+    margin-left: 2vw;
   }
 
   mat-sidenav{
@@ -41,7 +42,7 @@
           justify-content: start;
           color: #11389A;
           font-size: 16px;
-          font-family: Roboto;
+          font-family: 'Lato';
           font-weight: 600;
           text-decoration: none;
           cursor: pointer;
@@ -107,7 +108,7 @@
     .user-name{
       color: white;
       font-size: 20px;
-      font-family: Roboto;
+      font-family: 'Lato';
       font-weight: 400;
       cursor: default;
     }
@@ -115,7 +116,7 @@
     .user-plan {
       color: white;
       font-size: 14px;
-      font-family: Roboto;
+      font-family: 'Lato';
       font-weight: 400;
       cursor: default;
     }

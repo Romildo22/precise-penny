@@ -28,7 +28,6 @@ export class FinancialAnalysisService {
         const userFinanceCollectionRef = collection(db, 'users', userId, 'financeData');
         
         await addDoc(userFinanceCollectionRef, data);
-        console.log("Data saved successfully!");
     } catch (error) {
         console.error("Error saving finance data: ", error);
         throw error;
